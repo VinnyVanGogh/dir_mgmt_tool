@@ -1,4 +1,5 @@
 import os
+import sys
 
 from .copy_tool import copy_to_clipboard, copy_path_to_clipboard
 from .change_tool import move_file, delete_file
@@ -7,7 +8,7 @@ from .finder_tool import find_closest_script
 from .display_tool import list_files, display_choices
 
 from .my_actions import print_error, confirm_action
-from .my_colors import colors
+from ..settings.config import COLORS
 from .my_args import args
 
 def handle_input_selection(choice, sorted_items, current_dir):
@@ -35,6 +36,8 @@ def handle_input_selection(choice, sorted_items, current_dir):
 
         if args.edit_w_nvim and selected_item.startswith("[File]"):
             edit_file(item_path)
+        elif args.find_and_copy_path and selected_item.startswith("[File]"):
+            copy_path_to_clipboard(item_path)
         elif args.read_file and selected_item.startswith("[File]"):
             read_file(item_path)
         elif args.copy_content and selected_item.startswith("[File]"):
@@ -55,8 +58,8 @@ def handle_input_selection(choice, sorted_items, current_dir):
 def handle_find_script(script_path):
     if args.script_path:
         if script_path:
-            print(f"{colors['light_green']}Found closest match: {script_path}{colors['reset']}")
             if args.find_and_copy_path:
+                script_path = find_closest_script(args.root_directory, args.script_path, args.extension)
                 copy_path_to_clipboard(script_path)
             elif args.copy_content:
                 copy_to_clipboard(script_path)

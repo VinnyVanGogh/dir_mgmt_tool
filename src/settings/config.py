@@ -1,6 +1,6 @@
 from colorama import Fore, Style
 
-colors = {
+COLORS = {
     "light_green": Fore.GREEN,
     "red": Fore.RED,
     "orange": Fore.YELLOW,
@@ -8,4 +8,9 @@ colors = {
     "pink": Fore.MAGENTA,
     "reset": Style.RESET_ALL,
     "underline_text": Style.BRIGHT
+}
+
+DEFAULTS = {
+    "root": "/Users/vincevasile/Documents/DEV/",
+    "ext": "zsh"
 }

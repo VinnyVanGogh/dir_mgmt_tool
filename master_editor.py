@@ -1,5 +1,5 @@
 import sys
-from src.utilities.my_colors import colors
+from src.settings.config import COLORS
 from src.utilities.my_actions import print_error, confirm_action
 from src.utilities.my_args import args
 from src.utilities.my_handler import handle_find_script, handle_input_selection
@@ -14,10 +14,10 @@ def main():
     current_dir = args.root_directory
     continue_loop = True
     while continue_loop:
-        print(f"{colors['underline_text']}Current Directory: {current_dir} {colors['reset']}")
+        print(f"{COLORS['underline_text']}Current Directory: {current_dir} {COLORS['reset']}")
         sorted_items = list_files(current_dir)
         display_choices(sorted_items)
-        choice = input(f"{colors['light_green']}?#Choose a folder or file:{colors['reset']} ")
+        choice = input(f"{COLORS['light_green']}?#Choose a folder or file:{COLORS['reset']} ")
         current_dir, continue_loop = handle_input_selection(choice, sorted_items, current_dir)
 
 if __name__ == "__main__":

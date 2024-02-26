@@ -1,9 +1,9 @@
 import subprocess
 from .my_actions import confirm_action, print_error
-from .my_colors import colors
+from ..settings.config import COLORS
 
 def edit_file(file_path):
-    print(f"{colors['light_green']}Opening {file_path} in NeoVim...{colors['reset']}")
+    print(f"{COLORS['light_green']}Opening {file_path} in NeoVim...{COLORS['reset']}")
     subprocess.call(['nvim', file_path])
 
 def read_file(file_path):
